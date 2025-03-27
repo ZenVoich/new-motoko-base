@@ -1,4 +1,5 @@
 name: Tests
+
 on:
   push:
     branches:
@@ -18,6 +19,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Cache mops packages
+        uses: actions/cache@v4
+        with:
+          key: mops-packages-${{ hashFiles('mops.toml') }}
+          restore-keys: |
+            mops-packages-${{ hashFiles('mops.toml') }}
+            mops-packages-
+          path: |
+            ~/.cache/mops
       - run: npm ci
       - run: npm run validate:changelog
       - name: Check for Motoko file changes
@@ -42,6 +53,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Cache mops packages
+        uses: actions/cache@v4
+        with:
+          key: mops-packages-${{ hashFiles('mops.toml') }}
+          restore-keys: |
+            mops-packages-${{ hashFiles('mops.toml') }}
+            mops-packages-
+          path: |
+            ~/.cache/mops
       - run: npm ci
       - run: npm run validate:version
 
@@ -57,6 +78,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Cache mops packages
+        uses: actions/cache@v4
+        with:
+          key: mops-packages-${{ hashFiles('mops.toml') }}
+          restore-keys: |
+            mops-packages-${{ hashFiles('mops.toml') }}
+            mops-packages-
+          path: |
+            ~/.cache/mops
       - run: npm ci
       - run: npm run validate:api
       - name: Check for API changes
@@ -83,6 +114,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Cache mops packages
+        uses: actions/cache@v4
+        with:
+          key: mops-packages-${{ hashFiles('mops.toml') }}
+          restore-keys: |
+            mops-packages-${{ hashFiles('mops.toml') }}
+            mops-packages-
+          path: |
+            ~/.cache/mops
       - run: npm ci
       - run: npm run format:check
 
@@ -105,6 +146,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+          cache: 'npm'
+      - name: Cache mops packages
+        uses: actions/cache@v4
+        with:
+          key: mops-packages-${{ hashFiles('mops.toml') }}
+          restore-keys: |
+            mops-packages-${{ hashFiles('mops.toml') }}
+            mops-packages-
+          path: |
+            ~/.cache/mops
       - run: npm ci
       - run: npx mops toolchain init
       - run: npm test
